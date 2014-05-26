@@ -5,7 +5,7 @@ and scope. Enjoy!
 
 ## Examples
 
-- [Basic Wire](tree/master/examples/basic_wire) [show, wire] - Just the basics
+- [Basic Wire](examples/basic_wire) [show, wire] - Just the basics
   of wire and show
 
 ## License
