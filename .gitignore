@@ -5,7 +5,8 @@ out
 /checkouts
 pom.xml
 pom.xml.asc
-*.js
+examples/**/*.js
+!react.js
 *.jar
 *.class
 /.lein-*
