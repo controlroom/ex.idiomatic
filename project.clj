@@ -1,4 +1,4 @@
-(defproject controlroom/idiomatic "0.1.0"
+(defproject controlroom/ex.idiomatic "0.1.0"
   :description "How to use ctrlrm projects"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
