@@ -7,6 +7,8 @@ and scope. Enjoy!
 
 - [Basic Wire](examples/basic_wire) [show, wire] - Just the basics
   of wire and show
+- [Basic Wired](examples/basic_wired) [show, wire] - Basic Wire, using wired
+  dom components
 
 ## Building
 

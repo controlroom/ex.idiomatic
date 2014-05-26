@@ -15,5 +15,13 @@
                 :output-to  "examples/basic_wire/main.js"
                 :optimizations  :none
                 :output-wrapper false
-                :source-map     true }}]})
+                :source-map     true }}
+    {:id "basic_wired"
+     :source-paths ["examples/basic_wired/src"]
+     :compiler {:output-dir "examples/basic_wired/out"
+                :output-to  "examples/basic_wired/main.js"
+                :optimizations  :none
+                :output-wrapper false
+                :source-map     true }}
+    ]})
 
