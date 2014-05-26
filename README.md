@@ -8,6 +8,12 @@ and scope. Enjoy!
 - [Basic Wire](examples/basic_wire) [show, wire] - Just the basics
   of wire and show
 
+## Building
+
+You can build any of these examples using the lein cljsbuild command line tool.
+
+```$> lein cljsbuild once example_name```
+
 ## License
 
 Copyright © 2014 controlroom.io
