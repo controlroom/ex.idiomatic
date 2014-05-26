@@ -1,7 +1,12 @@
 # idiomatic ctrlrm usage
 
-Just a set of examples showing how to use ctrlrm libraries. They vary in type
+Just a set of examples showing how to use ctrlrm libraries. These vary in type
 and scope. Enjoy!
+
+## Examples
+
+- [Basic Wire](tree/master/examples/basic_wire) [show, wire] - Just the basics
+  of wire and show
 
 ## License
 
