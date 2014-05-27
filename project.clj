@@ -23,5 +23,12 @@
                 :optimizations  :none
                 :output-wrapper false
                 :source-map     true }}
+    {:id "mouse"
+     :source-paths ["examples/mouse/src"]
+     :compiler {:output-dir "examples/mouse/out"
+                :output-to  "examples/mouse/main.js"
+                :optimizations  :none
+                :output-wrapper false
+                :source-map     true }}
     ]})
 

@@ -9,6 +9,8 @@ and scope. Enjoy!
   of wire and show
 - [Basic Wired](examples/basic_wired) [show, wire] - Basic Wire, using wired
   dom components
+- [Mouse](examples/mouse) [show, wire] - Using wired window events to drive
+  display of mouse data
 
 ## Building
 
