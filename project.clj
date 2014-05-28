@@ -30,5 +30,12 @@
                 :optimizations  :none
                 :output-wrapper false
                 :source-map     true }}
+    {:id "simple_todo"
+     :source-paths ["examples/simple_todo/src"]
+     :compiler {:output-dir "examples/simple_todo/out"
+                :output-to  "examples/simple_todo/main.js"
+                :optimizations  :none
+                :output-wrapper false
+                :source-map     true }}
     ]})
 

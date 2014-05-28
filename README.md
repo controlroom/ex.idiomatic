@@ -11,6 +11,7 @@ and scope. Enjoy!
   dom components
 - [Mouse](examples/mouse) [show, wire] - Using wired window events to drive
   display of mouse data
+- [Simple Todo](examples/simple_todo) [show, wire] - Basic todo with animation
 
 ## Building
 
