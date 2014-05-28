@@ -8,11 +8,11 @@
   {:id (str (gensym)), :text text})
 
 (defn tap-input [wire component]
-  (w/taps wire
-    {:event :keyboard-up :keypress :enter}
-      (fn [e]
-        (w/act wire :new-todo {:text (:value e)})
-        (set! (.-value (:target e)) ""))))
+  (-> wire
+      (w/tap {:event :keyboard-up :keypress :enter}
+             (fn [e]
+               (w/act wire :new-todo {:text (:value e)})
+               (set! (.-value (:target e)) "")))))
 
 (show/defclass TodoInput [component]
   (render [{:keys [wire]} state]
@@ -23,7 +23,7 @@
 (defn tap-item [wire component]
   (w/taps wire
     :mouse-double-click #(w/act wire :remove-todo)
-    :mouse-click #(show/update! component :selected not)))
+    :mouse-click        #(show/update! component :selected not)))
 
 (show/defclass Todo [component]
   (initial-state []
@@ -31,8 +31,8 @@
   (render [{:keys [text wire]}
            {:keys [selected]}]
     (wired/li (tap-item wire component)
-      {:className (show/class-map {"list-item" true, "selected" selected})}
-      text)))
+              {:className (show/class-map {"list-item" true, "selected" selected})}
+              text)))
 
 (show/defclass TodoList [component]
   (render [{:keys [todos wire]} state]
