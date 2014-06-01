@@ -1,0 +1,8 @@
+{
+	"name": "todomvc-ctrlrm",
+	"version": "0.0.1",
+	"dependencies": {
+		"todomvc-common": "~0.1.4",
+    "react": "~0.10"
+	}
+}
