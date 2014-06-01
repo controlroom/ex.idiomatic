@@ -5,13 +5,15 @@
             [wire.core :as w]
             [examples.todomvc.store :as store]))
 
-;; Header / Add todos
+;; Header
+;;
 (defn header-wire []
   (w/taps (w/wire)
     {:key :keyboard-up :keypress :enter}
     (fn [evt]
-      (store/create-todo (:value evt))
-      (aset (:target evt) "value" ""))))
+      (when (not= (:value evt) "")
+        (store/create-todo (.trim (:value evt)))
+        (aset (:target evt) "value" "")))))
 
 (show/defclass Header [component]
   (render [props state]
@@ -21,6 +23,8 @@
                                   :placeholder "What needs to be done?"
                                   :autoFocus true}))))
 
+;; Item
+;;
 (defn item-wire-tap [component]
   (w/taps (w/wire)
     {:key :toggle-complete :action :click}
@@ -28,12 +32,15 @@
     {:key :destroy :action :click}
       (fn [evt] (store/destroy-todo (:id evt)))
     {:key :label :action :double-click}
-      (fn [evt] (show/assoc! component :editing true))
+      (fn [evt]
+        (show/assoc! component :text (show/get-props component :text))
+        (show/assoc! component :editing true))
     {:key :edit :action :change}
       (fn [evt] (show/assoc! component :text (:value evt)))
     {:key :edit :action :up :keypress :enter}
       (fn [evt]
-        (store/update-todo (:value evt) (:id evt))
+        (if (not= (:value evt) "")
+          (store/update-todo (:value evt) (:id evt)))
         (show/assoc! component :editing false))))
 
 (show/defclass TodoItem [component]
@@ -54,13 +61,18 @@
                         {:className "destroy"}))
         (wired/input (w/lay wire :edit {:id (:id props)})
                      {:className "edit"
+                      :autoFocus true
                       :value (:text state)})))))
 
+;; List
+;;
 (show/defclass TodoList [component]
   (render [props state]
     (dom/ul {:id "todo-list"}
       (map #(TodoItem %) (:todos props)))))
 
+;; Main
+;;
 (defn main-wire []
   (w/taps (w/wire)
     :mouse-click
@@ -79,6 +91,8 @@
         (TodoList props)))))
 
 
+;; Footer
+;;
 (defn footer-wire []
   (w/tap (w/wire)
     :mouse-click
@@ -107,6 +121,8 @@
       (dom/noscript)
       (footer-with-todos (:todos props)))))
 
+;; App
+;;
 (show/defclass App [component]
   (will-mount
     (store/register-changes
@@ -120,6 +136,8 @@
       (Main state)
       (Footer state))))
 
+;; Page Render
+;;
 (show/render-component
   (App)
   (.getElementById js/document "todoapp"))
