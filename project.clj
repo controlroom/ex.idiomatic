@@ -37,5 +37,12 @@
                 :optimizations  :none
                 :output-wrapper false
                 :source-map     true }}
+    {:id "todomvc"
+     :source-paths ["examples/todomvc/src"]
+     :compiler {:output-dir "examples/todomvc/js/out"
+                :output-to  "examples/todomvc/js/app.js"
+                :optimizations  :none
+                :output-wrapper false
+                :source-map     true }}
     ]})
 
