@@ -5,6 +5,8 @@
             [wire.core :as w]
             [examples.todomvc.store :as store]))
 
+(enable-console-print!)
+
 ;; Header
 ;;
 (defn header-wire []
@@ -27,17 +29,25 @@
 ;;
 (defn item-wire-tap [component]
   (w/taps (w/wire)
-    {:key :toggle-complete :action :click}
-      (fn [evt] (store/toggle-complete (:id evt)))
-    {:key :destroy :action :click}
-      (fn [evt] (store/destroy-todo (:id evt)))
-    {:key :label :action :double-click}
+    {:class :toggle
+     :key   :mouse-click}
       (fn [evt]
-        (show/assoc! component :text (show/get-props component :text))
-        (show/assoc! component :editing true))
-    {:key :edit :action :change}
+        (store/toggle-complete (:id evt)))
+    {:class :destroy
+     :key   :mouse-click}
+      (fn [evt] (store/destroy-todo (:id evt)))
+    {:tag :label
+     :key :mouse-double-click}
+      (fn [evt]
+        (doto component
+          (show/assoc! :text (show/get-props component :text))
+          (show/assoc! :editing true)))
+    {:class :edit
+     :key   :form-change}
       (fn [evt] (show/assoc! component :text (:value evt)))
-    {:key :edit :action :up :keypress :enter}
+    {:class    :edit
+     :key      :keyboard-up
+     :keypress :enter}
       (fn [evt]
         (if (not= (:value evt) "")
           (store/update-todo (:value evt) (:id evt)))
@@ -48,21 +58,18 @@
     {:editing false
      :text (or (show/get-props component :text) "")})
   (render [props state]
-    (let [wire (item-wire-tap component)]
+    (let [wire (w/lay (item-wire-tap component) nil {:id (:id props)})]
       (dom/li {:className (show/class-map {"completed" (:complete props)
                                            "editing"   (:editing state)})}
         (dom/div {:className "view"}
-          (wired/input (w/lay wire :toggle-complete {:id (:id props)})
-                       {:className "toggle"
-                        :type "checkbox"
-                        :checked (:complete props)})
-          (wired/label (w/lay wire :label) (:text props))
-          (wired/button (w/lay wire :destroy {:id (:id props)})
-                        {:className "destroy"}))
-        (wired/input (w/lay wire :edit {:id (:id props)})
-                     {:className "edit"
-                      :autoFocus true
-                      :value (:text state)})))))
+          (wired/input wire {:className "toggle"
+                             :type "checkbox"
+                             :checked (:complete props)})
+          (wired/label wire (:text props))
+          (wired/button wire {:className "destroy"}))
+        (wired/input wire {:className "edit"
+                           :autoFocus true
+                           :value (:text state)})))))
 
 ;; List
 ;;
@@ -127,7 +134,7 @@
   (will-mount
     (store/register-changes
       (fn []
-        (show/assoc! component :todos (store/all-todos))
+        (show/assoc! component :todos        (store/all-todos))
         (show/assoc! component :all-complete (store/all-complete?)))))
 
   (render [props state]
