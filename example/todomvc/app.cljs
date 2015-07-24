@@ -113,14 +113,14 @@
                 (dom/strong remaining-ct)
                 (str " " item-phrase " left"))
       (let [curr-hash (.-hash js/location)
-            states [["#/" "All"]
-                    ["#/active" "Active"]
-                    ["#/completed" "Completed"]]]
+            states [[#{"#/" ""} "All"]
+                    [#{"#/active"} "Active"]
+                    [#{"#/completed"} "Completed"]]]
         (dom/ul {:id "filters"}
           (map
             (fn [[href n]]
-              (dom/li (dom/a {:className (show/class-map {"selected" (= curr-hash href)})
-                              :href href} n)))
+              (dom/li (dom/a {:className (show/class-map {"selected" (href curr-hash)})
+                              :href (first href)} n)))
             states)))
       (if (> completed-ct 0)
         (wired/button (footer-wire)

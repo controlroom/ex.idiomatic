@@ -30,7 +30,7 @@
   (render [{:keys [text wire]}
            {:keys [selected]}]
     (wired/li (tap-item wire component)
-              {:className (show/class-map {"list-item" true, "selected" selected})}
+              {:className {"list-item" true, "selected" selected}}
               text)))
 
 (show/defclass TodoList [component]
