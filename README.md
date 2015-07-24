@@ -15,9 +15,11 @@ and scope. Enjoy!
 
 ## Building
 
-You can build any of these examples using the lein cljsbuild command line tool.
+You can build any of these examples using the boot run command line command
 
-```$> lein cljsbuild once example_name```
+```$> boot run```
+
+Then you can view the examples at http://localhost:3000/$insert-example-folder/
 
 ## License
 

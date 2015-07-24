@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+}
+
+.todos-container {
+  max-width: 400px;
+  margin: 10px auto 0px auto;
+}
+
+.todos-container .input-container {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.todos-container .input-container input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: 100%;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.todos-container .list-container ul {
+  list-style-type: none;
+}
+
+.todos-container .list-container ul li {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+  -webkit-user-select: none;
+}
+
+.todos-container .list-container ul li:hover {
+  background-color: #eee;
+}
+
+.todos-container .list-container ul li:last-child{
+  margin-bottom: 0;
+}
+
+.todos-container .list-container ul li.list-item {
+  -webkit-transition: background-color 200ms ease-in
+}
+
+.todos-container .list-container ul li.list-item.selected {
+  background-color: #e7ccbe;
+  -webkit-transition: background-color 500ms ease-out
+}
+
+/** start of entering and end of leaving **/
+.todos-container .list-container ul li.list-item-enter,
+.todos-container .list-container ul li.list-item-leave.list-item-leave-active {
+  opacity: 0;
+  max-height: 0;
+  padding: 0 10px;
+}
+
+/** start of leaving and end of entering **/
+.todos-container .list-container ul li.list-item-enter.list-item-enter-active,
+.todos-container .list-container ul li.list-item-leave {
+  opacity: 1;
+  max-height: 50px;
+  padding: 10px;
+}
+
+/** ease in out quint **/
+.todos-container .list-container ul li.list-item-enter,
+.todos-container .list-container ul li.list-item-leave {
+  -webkit-transition: all 200ms cubic-bezier(0.77, 0, 0.175, 1);
+}

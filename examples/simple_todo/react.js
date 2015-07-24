@@ -1,1 +1,0 @@
-../../resources/react.js
