@@ -5,7 +5,10 @@
                  [pandeiro/boot-http "0.6.3"]
 
                  [controlroom/show "0.6.0-SNAPSHOT"]
-                 [controlroom/wire "0.1.1"]])
+                 [controlroom/wire "0.1.1"]
+                 ;; [controlroom/plug "0.1.0-SNAPSHOT"]
+                 [controlroom/plug-neo "0.1.0-SNAPSHOT"]
+                 ])
 
 (require
   '[adzerk.boot-cljs    :refer [cljs]]
@@ -19,6 +22,8 @@
   (comp (serve)
         (watch)
         (checkout :dependencies [['controlroom/show "0.6.0-SNAPSHOT"]
-                                 ['controlroom/wire "0.1.1"]])
+                                 ['controlroom/wire "0.1.1"]
+                                 ;; ['controlroom/plug "0.1.0-SNAPSHOT"]
+                                 ['controlroom/plug-neo "0.1.0-SNAPSHOT"]])
         (reload)
         (cljs)))

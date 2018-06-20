@@ -1,0 +1,4 @@
+id=$1
+
+lein cljsbuild once "$id"
+cp src/"$id"/* target/"$id"

@@ -1,0 +1,5 @@
+id=$1
+
+mkdir -p target/"$id"
+cp src/"$id"/* target/"$id"
+lein cljsbuild auto "$id"
